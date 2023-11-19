@@ -40,12 +40,10 @@ class PasswordResetLinkController extends Controller
             $request->only('email')
         );
 
-        if ($status == Password::RESET_LINK_SENT) {
+        if (Password::RESET_LINK_SENT == $status) {
             return back()->with('status', __($status));
         }
 
-        throw ValidationException::withMessages([
-            'email' => [trans($status)],
-        ]);
+        throw ValidationException::withMessages(['email' => [trans($status)]]);
     }
 }

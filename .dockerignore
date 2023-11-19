@@ -1,0 +1,43 @@
+# ignore .git and .cache folders
+.gitlab-ci.yml
+.gitattributes
+.gitignore
+.git
+.cache
+
+# ignore all *.class files in all folders, including build root
+**/*.class
+
+# ignore all markdown files (md) beside all README*.md other than README-secret.md
+*.md
+!README*.md
+README-secret.md
+
+# Ignore passwords file
+passwords.txt
+
+# dockers
+.dockerignore
+.docker
+docker
+Dockerfile*
+docker-compose*.yml
+docker-compose*.yaml
+
+env.*
+devops
+
+# To prevent storing dev/temporary container data
+*.csv
+tmp
+
+*.mwb*
+
+.editorconfig
+.DS_Store
+/vendor
+vendor/
+/node_modules
+node_modules/
+*.y*ml
+*lock*
