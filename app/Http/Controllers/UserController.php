@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Sleep;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -18,8 +19,13 @@ class UserController extends Controller
      */
     public function index(): Response
     {
+        // Sleep::sleep(5);
+
         return Inertia::render('Users/Index', [
-            'users' => User::all(),
+            // 'users' => User::all(),
+            'users' => User::paginate(),
+            // 'users' => User::simplePaginate(),
+            // 'users' => User::cursorPaginate(),
         ]);
     }
 
@@ -38,17 +44,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        // $request->validate([
-        //     'name'     => [
-        //         'required', 'string', 'max:255',
-        //     ],
-        //     'email'    => [
-        //         'required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class,
-        //     ],
-        //     'password' => [
-        //         'required', 'confirmed', Rules\Password::defaults(),
-        //     ],
-        // ]);
+        Sleep::sleep(10);
 
         $user = User::create([
             'name'     => $request->name,

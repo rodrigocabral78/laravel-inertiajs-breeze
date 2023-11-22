@@ -7,21 +7,22 @@ import TextInput from '@/Components/TextInput.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 
 const props = defineProps({
+  // user: Object,
   token: {
     type: String,
-  }
+  },
 })
+console.log(props)
 
 const form = useForm({
-  _token: props.token,
   name: null,
   email: null,
   password: null,
   password_confirmation: null,
 })
+console.log(form)
 
 const submit = () => {
-  console.log(form)
   form.post(route('users.store'), {
     onFinish: () => form.reset('password', 'password_confirmation'),
   })
@@ -42,14 +43,6 @@ const submit = () => {
           <div class="p-6 text-gray-900 dark:text-gray-100">
 
             <form @submit.prevent="submit">
-              <input
-                id="_token"
-                name="_token"
-                type="hidden"
-                :value="token"
-                autocomplete="off"
-              >
-
               <div>
                 <InputLabel for="name" value="Name" />
 

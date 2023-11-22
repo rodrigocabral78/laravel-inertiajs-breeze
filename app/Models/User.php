@@ -29,9 +29,9 @@ class User extends Authenticatable
     {
         static::creating(
             function (User $user) {
-                $user->uuid = (string) Str::uuid();
-                $user->created_by ? 1 : Auth::id();
-                $user->updated_by ? 1 : Auth::id();
+                $user->uuid       = (string) Str::uuid();
+                $user->created_by = Auth::id() ?: 1;
+                $user->updated_by = Auth::id() ?: 1;
             }
         );
         static::updating(
@@ -46,7 +46,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $primaryKey = 'id';
+    // protected $primaryKey = 'id';
 
     /**
      * The table users for the model.

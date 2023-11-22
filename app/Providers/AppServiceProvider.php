@@ -14,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Phfoxer\ApiGenerate\ApiGenerateServiceProvider::class);
+        }
     }
 
     /**
@@ -26,18 +28,27 @@ class AppServiceProvider extends ServiceProvider
 
         // Log all DB SELECT statements
         // @codeCoverageIgnoreStart
-        if (!app()->environment('testing')) {
+        if (!app()->environment('production')) {
             DB::listen(function ($query) {
+                // dd($query);
                 // if (preg_match('/^select/', $query->sql)) {
                 //     Log::info('sql: ' . $query->sql);
                 //     // Also available are $query->bindings and $query->time.
                 // }
-                Log::debug(
-                    'sql: ' . $query->sql,
+                // Log::debug(
+                // foreach ($query->bindings as $binding) {
+                //     foreach ($binding as $key => $value) {
+                //         // code...
+                //         echo "$key => $value\n";
+                //     }
+                // }
+                Log::info(
+                    'Connection: ' . $query->connectionName,
                     [
-                        'time'       => $query->time,
-                        'bindings'   => $query->bindings,
-                        'connection' => $query->connection->getConfig(),
+                        'time'     => $query->time,
+                        'sql: '    => $query->sql,
+                        'bindings' => $query->bindings,
+                        'conig'    => $query->connection->getConfig(),
                     ]
                 );
             });
