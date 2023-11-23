@@ -12,7 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->uuid()->index();
+            $table->uuid()->nullable()->index();
 
             $table->string('tag', 255);
 

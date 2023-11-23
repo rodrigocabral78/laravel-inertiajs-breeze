@@ -20,6 +20,7 @@
     "ext-pdo_sqlite": "*",
     "ext-pgsql": "*",
     "ext-sqlite3": "*",
+    "doctrine/dbal": "*",
     "guzzlehttp/guzzle": "^7.2",
     "laravel/framework": "^10.10",
     "laravel/sanctum": "^3.2",
@@ -40,7 +41,7 @@
     "nunomaduro/collision": "^7.0",
     "pestphp/pest": "^2.0",
     "pestphp/pest-plugin-laravel": "^2.0",
-    "phfoxer/apigenerate": "^2.8",
+    "rodrixcornell/apigenerate": "dev-master",
     "spatie/laravel-ignition": "^2.0",
     "squizlabs/php_codesniffer": "^3.7"
   },

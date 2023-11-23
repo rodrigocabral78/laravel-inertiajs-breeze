@@ -10,8 +10,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::resource('users', UserController::class);
-
 Route::group([
     'namespace'  => 'App\Http\Controllers',
     'middleware' => 'auth',
@@ -19,6 +17,8 @@ Route::group([
     'as'         => 'users.',
     // 'sufix' => 'is',
 ], function () {
+    // Route::resource('users', UserController::class);
+
     Route::get('', [
         'uses'   => 'UserController@index',
         'as'     => 'index',
@@ -32,7 +32,7 @@ Route::group([
         'as'     => 'store',
     ]);
 
-    //
+    // Required Parameters
     Route::get('{user:uuid}', [
         'uses'      => 'UserController@show',
         'as'        => 'show',
@@ -43,6 +43,16 @@ Route::group([
         'as'        => 'edit',
         'whereUuid' => 'id',
     ]);
+    // Route::put('{user:uuid}', [
+    //     'uses'      => 'UserController@update',
+    //     'as'        => 'update',
+    //     'whereUuid' => 'id',
+    // ]);
+    // Route::patch('{user:uuid}', [
+    //     'uses'      => 'UserController@update',
+    //     'as'        => 'update',
+    //     'whereUuid' => 'id',
+    // ]);
     Route::match([
         'put',
         'patch'
