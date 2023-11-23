@@ -35,18 +35,11 @@ class AppServiceProvider extends ServiceProvider
                 //     Log::info('sql: ' . $query->sql);
                 //     // Also available are $query->bindings and $query->time.
                 // }
-                // Log::debug(
-                // foreach ($query->bindings as $binding) {
-                //     foreach ($binding as $key => $value) {
-                //         // code...
-                //         echo "$key => $value\n";
-                //     }
-                // }
                 Log::info(
                     'Connection: ' . $query->connectionName,
                     [
                         'time'     => $query->time,
-                        'sql: '    => $query->sql,
+                        'sql'      => $query->sql,
                         'bindings' => $query->bindings,
                         'conig'    => $query->connection->getConfig(),
                     ]

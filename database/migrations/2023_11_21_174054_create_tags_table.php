@@ -12,9 +12,12 @@ return new class () extends Migration {
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->index();
+
             $table->string('tag', 255);
-            $table->bigInteger('created_by')->nullable()->index();
-            $table->bigInteger('updated_by')->nullable()->index();
+
+            $table->foreignId('created_by')->nullable()->index();
+            $table->foreignId('updated_by')->nullable()->index();
             $table->timestamps();
             $table->index('created_at');
             $table->index('updated_at');

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,18 +12,17 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('post_tags', function (Blueprint $table) {
             $table->id();
-            $table->uuid()->index();
-            $table->string('name')->index();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->boolean('is_admin')->default(0);
-            $table->boolean('is_active')->default(0);
-            // $table->bigInteger('created_by')->nullable()->index();
-            // $table->bigInteger('updated_by')->nullable()->index();
+
+            $table->foreignId('post_id')->constrained();
+            // $table->foreignId('post_id');
+            // $table->foreign('post_id')->references('id')->on('posts');
+
+            $table->foreignId('tag_id')->constrained();
+            // $table->foreignId('tag_id');
+            // $table->foreign('tag_id')->references('id')->on('tags');
+
             $table->foreignId('created_by')->nullable()->index();
             $table->foreignId('updated_by')->nullable()->index();
             $table->timestamps();
@@ -36,6 +37,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('post_tags');
     }
 };
