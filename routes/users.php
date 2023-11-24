@@ -1,69 +1,61 @@
 <?php
 
-// GET|HEAD        users  users.index › UserController@index ⇂ web
-// POST            users  users.store › UserController@store ⇂ web
-// GET|HEAD        users/create  users.create › UserController@create ⇂ web
-// GET|HEAD        users/{user}  users.show › UserController@show ⇂ web
-// PUT|PATCH       users/{user}  users.update › UserController@update ⇂ web
-// DELETE          users/{user}  users.destroy › UserController@destroy ⇂ web
-// GET|HEAD        users/{user}/edit . users.edit › UserController@edit ⇂ web
-
 use Illuminate\Support\Facades\Route;
 
 Route::group([
     'namespace'  => 'App\Http\Controllers',
     'middleware' => 'auth',
-    'prefix'     => 'users',
     'as'         => 'users.',
+    'prefix'     => 'users',
     // 'sufix' => 'is',
 ], function () {
     // Route::resource('users', UserController::class);
 
     Route::get('', [
-        'uses'   => 'UserController@index',
         'as'     => 'index',
+        'uses'   => 'UserController@index',
     ]);
     Route::get('create', [
-        'uses'   => 'UserController@create',
         'as'     => 'create',
+        'uses'   => 'UserController@create',
     ]);
     Route::post('', [
-        'uses'   => 'UserController@store',
         'as'     => 'store',
+        'uses'   => 'UserController@store',
     ]);
 
     // Required Parameters
     Route::get('{user:uuid}', [
-        'uses'      => 'UserController@show',
         'as'        => 'show',
+        'uses'      => 'UserController@show',
         'whereUuid' => 'id',
     ]);
     Route::get('{user:uuid}/edit', [
-        'uses'      => 'UserController@edit',
         'as'        => 'edit',
+        'uses'      => 'UserController@edit',
         'whereUuid' => 'id',
     ]);
     // Route::put('{user:uuid}', [
-    //     'uses'      => 'UserController@update',
     //     'as'        => 'update',
+    //     'uses'      => 'UserController@update',
     //     'whereUuid' => 'id',
     // ]);
     // Route::patch('{user:uuid}', [
-    //     'uses'      => 'UserController@update',
     //     'as'        => 'update',
+    //     'uses'      => 'UserController@update',
     //     'whereUuid' => 'id',
     // ]);
     Route::match([
         'put',
         'patch'
     ], '{user:uuid}', [
-        'uses'      => 'UserController@update',
         'as'        => 'update',
+        'uses'      => 'UserController@update',
         'whereUuid' => 'id',
     ]);
     Route::delete('{user:uuid}', [
-        'uses'      => 'UserController@destroy',
         'as'        => 'destroy',
+        'uses'      => 'UserController@destroy',
         'whereUuid' => 'id',
     ]);
 });

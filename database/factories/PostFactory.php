@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 /**
@@ -36,14 +35,11 @@ class PostFactory extends Factory
         $post = implode($post);
 
         return [
-            'uuid'        => Str::uuid(),
             'user_id'     => 3,
             'title'       => $title,
             'description' => fake()->paragraph(),
             'slug'        => Str::slug($title),
             'post'        => $post,
-            'created_by'  => Auth::id() ?: 1,
-            'updated_by'  => Auth::id() ?: 1,
         ];
     }
 }

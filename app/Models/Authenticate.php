@@ -21,22 +21,22 @@ class Authenticate extends Authenticatable
     use SoftDeletes;
 
     /**
-     * Undocumented function.
+     * Function booted
      *
      * @return void
      */
-    protected static function booted()
+    protected static function booted(): void
     {
         static::creating(
             function (User $user) {
                 $user->uuid       = (string) Str::uuid();
-                $user->created_by = Auth::id() ?: 1;
-                $user->updated_by = Auth::id() ?: 1;
+                $user->created_by = (int) Auth::id() ?: 1;
+                $user->updated_by = (int) Auth::id() ?: 1;
             }
         );
         static::updating(
             function (User $user) {
-                $user->updated_by = Auth::id();
+                $user->updated_by = (int) Auth::id();
             }
         );
     }
@@ -46,7 +46,7 @@ class Authenticate extends Authenticatable
      *
      * @var string
      */
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
 
     /**
      * The table users for the model.
@@ -54,21 +54,20 @@ class Authenticate extends Authenticatable
     protected $table = 'users';
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that should be cast.
      *
-     * @var array<int, string>
+     * @var array<string, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'is_admin',
-        'is_active',
-        // 'created_by',
-        // 'updated_by',
-        // 'created_at',
-        // 'updated_at',
-        // 'deleted_at',
+    protected $casts = [
+        'email_verified_at' => 'datetime:Y-m-d H:i:s',
+        'password'          => 'hashed',
+        'created_at'        => 'datetime:Y-m-d H:i:s',
+        'updated_at'        => 'datetime:Y-m-d H:i:s',
+        'deleted_at'        => 'datetime:Y-m-d H:i:s',
+        'is_admin'          => 'bool',
+        'is_active'         => 'bool',
+        'created_by'        => 'int',
+        'updated_by'        => 'int'
     ];
 
     /**
@@ -82,18 +81,16 @@ class Authenticate extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that are mass assignable.
      *
-     * @var array<string, string>
+     * @var array<int, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password'          => 'hashed',
-        'created_at'        => 'datetime:Y-m-d H:i:s',
-        'updated_at'        => 'datetime:Y-m-d H:i:s',
-        'deleted_at'        => 'datetime:Y-m-d H:i:s',
-        'is_admin'          => 'boolean',
-        'is_active'         => 'boolean',
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'is_admin',
+        'is_active',
     ];
 
     /**

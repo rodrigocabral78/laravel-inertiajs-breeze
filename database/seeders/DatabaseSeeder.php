@@ -25,29 +25,12 @@ class DatabaseSeeder extends Seeder
             'Management User',
         ]);
         if (!$user) {
-            // DB::table('users')->insert([
-            //     'uuid'              => Str::uuid(),
-            //     'name'              => 'Management User',
-            //     'email'             => 'management@example.com',
-            //     'email_verified_at' => Carbon::now(),
-            //     'password'          => 'password',
-            //     'remember_token'    => Str::random(10),
-            //     'is_admin'          => 1,
-            //     'is_active'         => 1,
-            //     'created_by'        => Auth::id() ?: 1,
-            //     'updated_by'        => Auth::id() ?: 1,
-            //     'created_at'        => Carbon::now(),
-            //     'updated_at'        => Carbon::now(),
-            // ]);
             User::factory()->create([
-                'uuid'       => Str::uuid(),
                 'name'       => 'Management User',
                 'email'      => 'management@example.com',
                 'password'   => 'password',
                 'is_admin'   => 1,
                 'is_active'  => 1,
-                'created_by' => Auth::id() ?: 1,
-                'updated_by' => Auth::id() ?: 1,
             ]);
         }
 
@@ -55,29 +38,12 @@ class DatabaseSeeder extends Seeder
             'Developer User',
         ]);
         if (!$user) {
-            // DB::table('users')->insert([
-            //     'uuid'              => Str::uuid(),
-            //     'name'              => 'Developer User',
-            //     'email'             => 'developer@example.com',
-            //     'email_verified_at' => Carbon::now(),
-            //     'password'          => 'password',
-            //     'remember_token'    => Str::random(10),
-            //     'is_admin'          => 1,
-            //     'is_active'         => 1,
-            //     'created_by'        => Auth::id() ?: 1,
-            //     'updated_by'        => Auth::id() ?: 1,
-            //     'created_at'        => Carbon::now(),
-            //     'updated_at'        => Carbon::now(),
-            // ]);
             User::factory()->create([
-                'uuid'       => Str::uuid(),
                 'name'       => 'Developer User',
                 'email'      => 'developer@example.com',
                 'password'   => 'password',
                 'is_admin'   => 1,
                 'is_active'  => 1,
-                'created_by' => Auth::id() ?: 1,
-                'updated_by' => Auth::id() ?: 1,
             ]);
         }
 

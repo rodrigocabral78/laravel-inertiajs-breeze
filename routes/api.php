@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+$routeWeb = 'routes/api/';
+$basePath = base_path($routeWeb);
+if (is_dir($basePath)) {
+    $files = File::allFiles($basePath);
+    foreach ($files as $file) {
+        Route::group([], $basePath . $file->getFilename());
+    }
+}
