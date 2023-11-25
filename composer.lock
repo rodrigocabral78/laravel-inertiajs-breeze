@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7175dfaaa452c497bdcff14a2e0ccd5",
+    "content-hash": "4325a08fd4cdd2ea26289f5d0721da71",
     "packages": [
         {
             "name": "brick/math",
@@ -6149,6 +6149,157 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "yajra/laravel-oci8",
+            "version": "v10.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yajra/laravel-oci8.git",
+                "reference": "b901e0a2e86a4c0fbc6b54454986a75a8e1f61db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yajra/laravel-oci8/zipball/b901e0a2e86a4c0fbc6b54454986a75a8e1f61db",
+                "reference": "b901e0a2e86a4c0fbc6b54454986a75a8e1f61db",
+                "shasum": ""
+            },
+            "require": {
+                "ext-oci8": ">=3.0.1",
+                "ext-pdo": "*",
+                "illuminate/database": "^10.0",
+                "illuminate/pagination": "^10.0",
+                "illuminate/support": "^10.0",
+                "illuminate/validation": "^10.0",
+                "php": "^8.1",
+                "yajra/laravel-pdo-via-oci8": "^3.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^3.5",
+                "mockery/mockery": "^1.4.4",
+                "orchestra/testbench": "^8.0",
+                "phpunit/phpunit": "^10.0.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "10.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Yajra\\Oci8\\Oci8ServiceProvider",
+                        "Yajra\\Oci8\\Oci8ValidationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helper.php"
+                ],
+                "psr-4": {
+                    "Yajra\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arjay Angeles",
+                    "email": "aqangeles@gmail.com"
+                }
+            ],
+            "description": "Oracle DB driver for Laravel 4|5|6|7 via OCI8",
+            "keywords": [
+                "laravel",
+                "oci8",
+                "oracle",
+                "pdo_oci"
+            ],
+            "support": {
+                "issues": "https://github.com/yajra/laravel-oci8/issues",
+                "source": "https://github.com/yajra/laravel-oci8/tree/v10.3.2"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/yajra",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/yajra",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/yajra",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2023-07-14T01:08:55+00:00"
+        },
+        {
+            "name": "yajra/laravel-pdo-via-oci8",
+            "version": "v3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yajra/pdo-via-oci8.git",
+                "reference": "9dd81df74e81c1461a4c4bd548a6dbc94908997f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yajra/pdo-via-oci8/zipball/9dd81df74e81c1461a4c4bd548a6dbc94908997f",
+                "reference": "9dd81df74e81c1461a4c4bd548a6dbc94908997f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-oci8": "*",
+                "ext-pdo": "*",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.4|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yajra\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arjay Angeles",
+                    "email": "aqangeles@gmail.com"
+                }
+            ],
+            "description": "PDO userspace driver proxying calls to PHP OCI8 driver",
+            "support": {
+                "issues": "https://github.com/yajra/pdo-via-oci8/issues",
+                "source": "https://github.com/yajra/pdo-via-oci8/tree/v3.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/yajra",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/yajra",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/yajra",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2023-06-15T11:24:06+00:00"
         }
     ],
     "packages-dev": [
@@ -7014,57 +7165,6 @@
                 }
             ],
             "time": "2023-10-10T13:55:26+00:00"
-        },
-        {
-            "name": "laracademy/generators",
-            "version": "3.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laracademy/generators.git",
-                "reference": "69010c4257ea190638978ef60674b44b318fe16d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laracademy/generators/zipball/69010c4257ea190638978ef60674b44b318fe16d",
-                "reference": "69010c4257ea190638978ef60674b44b318fe16d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.4"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Laracademy\\Generators\\GeneratorsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laracademy\\Generators\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael McMullen",
-                    "email": "michael@laracademy.co"
-                }
-            ],
-            "description": "This package will generate a Laravel Model based on your database table itself, filling in the required fields automatically.",
-            "keywords": [
-                "generators",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/laracademy/generators/issues",
-                "source": "https://github.com/laracademy/generators/tree/3.7"
-            },
-            "time": "2023-10-21T03:09:07+00:00"
         },
         {
             "name": "laravel/breeze",

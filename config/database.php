@@ -93,6 +93,41 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'oracle' => [
+            'driver'         => 'oracle',
+            'tns'            => env('DB_TNS', ''),
+            'host'           => env('DB_HOST', ''),
+            'port'           => env('DB_PORT', '1521'),
+            'database'       => env('DB_DATABASE', ''),
+            'service_name'   => env('DB_SERVICE_NAME', ''),
+            'username'       => env('DB_USERNAME', ''),
+            'password'       => env('DB_PASSWORD', ''),
+            'charset'        => env('DB_CHARSET', 'AL32UTF8'),
+            'prefix'         => env('DB_PREFIX', ''),
+            'prefix_schema'  => env('DB_SCHEMA_PREFIX', ''),
+            'edition'        => env('DB_EDITION', 'ora$base'),
+            'server_version' => env('DB_SERVER_VERSION', '11g'),
+            'load_balance'   => env('DB_LOAD_BALANCE', 'yes'),
+            'max_name_len'   => env('ORA_MAX_NAME_LEN', 30),
+            'dynamic'        => [],
+            'sessionVars'    => [
+                'NLS_COMP' => 'BINARY',
+                'NLS_SORT' => 'WEST_EUROPEAN_AI',
+
+                'NLS_TIME_FORMAT'         => 'HH24:MI:SS',
+                'NLS_DATE_FORMAT'         => 'YYYY-MM-DD',
+                'NLS_TIMESTAMP_FORMAT'    => 'YYYY-MM-DD HH24:MI:SS',
+                'NLS_TIMESTAMP_TZ_FORMAT' => 'YYYY-MM-DD HH24:MI:SS TZH:TZM',
+
+                'NLS_CHARACTERSET'       => 'UTF8',
+                'NLS_NCHAR_CHARACTERSET' => 'AL32UTF8',
+                'NLS_TERRITORY'          => 'BRAZIL',
+                'NLS_LANGUAGE'           => 'BRAZILIAN PORTUGUESE',
+                'NLS_LANG'               => 'BRAZILIAN PORTUGUESE_BRAZIL.UTF8',
+                'NLS_CURRENCY'           => 'R\$',
+                'NLS_NUMERIC_CHARACTERS' => '.,',
+            ],
+        ],
     ],
 
     /*

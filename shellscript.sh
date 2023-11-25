@@ -73,6 +73,7 @@ docker run --rm \
 --env ORACLE_CHARACTERSET='AL32UTF8' \
 --volume ./.docker/oracle/login.sql:/u01/app/oracle/product/11.2.0/xe/sqlplus/admin/login.sql \
 --volume ./.docker/oracle/initial_data:/docker-entrypoint-initdb.d/setup \
+--volume ./.docker/oracle/initial_data:/docker-entrypoint-initdb.d/startup \
 --volume oracle_data:/u01/app/oracle/oradata \
 oracle-xe:11.2.0.2
 # rodrigocabral78/oracle-xe:11.2.0.2
