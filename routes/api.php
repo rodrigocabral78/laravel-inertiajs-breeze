@@ -15,15 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
-});
+})->middleware('auth:api');
+// })->middleware('auth:sanctum');
 
-$routeWeb = 'routes/api/';
-$basePath = base_path($routeWeb);
+$basePath  = base_path('routes/api/');
 if (is_dir($basePath)) {
     $files = File::allFiles($basePath);
     foreach ($files as $file) {
-        Route::group([], $basePath . $file->getFilename());
+        Route::group([
+            'prefix' => 'v1',
+            'as'     => 'v1.',
+        ], $basePath . $file->getFilename());
     }
 }

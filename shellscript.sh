@@ -7,9 +7,11 @@ docker run --name some-mysql \
 -d \
 mysql:8.0.31-debian
 
+docker volume rm --force mysql_data ; \
 docker run --rm \
 --name mysql8 \
 --hostname mysql8 \
+--shm-size=1g \
 --publish 3306:3306 \
 --publish 33060:33060 \
 --env MYSQL_ROOT_PASSWORD='Secret#123' \
@@ -20,9 +22,16 @@ docker run --rm \
 --volume ./.docker/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf \
 --volume ./.docker/mysql/initial_data:/docker-entrypoint-initdb.d \
 --volume mysql_data:/var/lib/mysql \
-mysql:8.0.34-oracle --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci --explicit_defaults_for_timestamp=false --default_time_zone=-04:00
+mysql:8.0.34-oracle
+# --volume ./.docker/mysql/my.cnf:/etc/mysql/my.cnf \
+# mysql:8.0.34-oracle --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci --explicit_defaults_for_timestamp=false --default_time_zone=-04:00
 # mysql:8.0.34-debian --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci --explicit_defaults_for_timestamp=false --default_time_zone=-04:00
 
+docker run --rm --tty --interactive \
+exoplatform/mysqltuner --host docker \
+--user root \
+--pass='Secret#123' \
+--forcemem 1000
 
 docker container exec --tty --interactive mysql8 mysql --verbose --force --user=root --password='Secret#123'
 
@@ -36,7 +45,7 @@ mysql --ssl-mode=disabled --verbose --force --host=mysql --database=homestead --
 
 mysql --ssl-mode=disabled --verbose --force --host=`hostname -as` --database=homestead --user=homestead --password='Secret#123'
 
-
+docker volume rm --force postgres_data
 docker run --rm \
 --name postgres15 \
 --hostname postgres15 \
@@ -59,10 +68,10 @@ docker container exec --tty --interactive postgres15 psql -h postgres15 -U postg
 docker container exec --tty --interactive postgres15 psql -h postgres15 -U default
 
 
-
 ORACLE_BASE=/u01/app/oracle \
 ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
 
+docker volume rm --force oracle_data ; \
 docker run --rm \
 --name oracle11gR2-xe \
 --hostname oracle11gR2-xe \
@@ -72,7 +81,6 @@ docker run --rm \
 --env ORACLE_PWD='Secret#123' \
 --env ORACLE_CHARACTERSET='AL32UTF8' \
 --volume ./.docker/oracle/login.sql:/u01/app/oracle/product/11.2.0/xe/sqlplus/admin/login.sql \
---volume ./.docker/oracle/initial_data:/docker-entrypoint-initdb.d/setup \
 --volume ./.docker/oracle/initial_data:/docker-entrypoint-initdb.d/startup \
 --volume oracle_data:/u01/app/oracle/oradata \
 oracle-xe:11.2.0.2
@@ -89,7 +97,7 @@ docker container exec --tty --interactive oracle11gR2-xe sqlplus system/'Secret#
 docker container exec --tty --interactive oracle11gR2-xe sqlplus homestead/'Secret#123'@//localhost:1521/XE @/u01/app/oracle/product/11.2.0/xe/sqlplus/admin/login.sql
 docker container exec --tty --interactive oracle11gR2-xe sqlplus hr/'Secret#123'@//localhost:1521/XE @/u01/app/oracle/product/11.2.0/xe/sqlplus/admin/login.sql
 
-
+docker volume rm --force oracle_data
 docker run --rm \
 --name oracle19c-se2 \
 --hostname oracle19c-se2 \
@@ -119,6 +127,7 @@ docker container exec --tty --interactive oracle ./setPassword.sh 'Secret#123'
 
 docker pull container-registry.oracle.com/database/free:latest
 
+docker volume rm --force oracle_data
 docker run --rm \
 --name oracle-xe21c \
 --publish 1521:1521 \

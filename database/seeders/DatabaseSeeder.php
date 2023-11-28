@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
                 'name'       => 'Management User',
                 'email'      => 'management@example.com',
                 'password'   => 'password',
+                'api_token'  => Str::random(60),
                 'is_admin'   => 1,
                 'is_active'  => 1,
             ]);
@@ -42,6 +43,7 @@ class DatabaseSeeder extends Seeder
                 'name'       => 'Developer User',
                 'email'      => 'developer@example.com',
                 'password'   => 'password',
+                'api_token'  => Str::random(60),
                 'is_admin'   => 1,
                 'is_active'  => 1,
             ]);
@@ -51,6 +53,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PostSeeder::class,
             TagSeeder::class,
+            AuditLogSeeder::class,
         ]);
 
         foreach (Post::all() as $post) { // loop through all posts
