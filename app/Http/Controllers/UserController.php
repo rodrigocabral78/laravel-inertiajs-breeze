@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Sleep;
 use Illuminate\Validation\Rules;
@@ -14,6 +15,11 @@ use Inertia\Response;
 
 class UserController extends Controller
 {
+    public function __construct(
+        protected Request $request
+    ) {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -22,7 +28,7 @@ class UserController extends Controller
         // Sleep::sleep(5);
 
         return Inertia::render('Users/Index', [
-            // 'users' => User::all(),
+            'data'  => ['users' => User::all(), ],
             'users' => User::paginate(),
             // 'users' => User::simplePaginate(),
             // 'users' => User::cursorPaginate(),
@@ -35,7 +41,7 @@ class UserController extends Controller
     public function create(): Response
     {
         return Inertia::render('Users/Create', [
-            'token' => csrf_token(),
+            // 'token' => csrf_token(),
         ]);
     }
 

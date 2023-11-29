@@ -23,7 +23,7 @@ class FailedListener
      */
     public function handle(Failed $event): void
     {
-        ds('failed', $event);
+        // ds('failed', $event);
         /** @var User $user */
         $user = $event->user;
         if (!$user) {

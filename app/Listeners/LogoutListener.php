@@ -24,7 +24,7 @@ class LogoutListener
      */
     public function handle(Logout $event): void
     {
-        ds('logout', $event);
+        // ds('logout', $event);
         /** @var User $user */
         $user = $event->user;
         if (!$user) {

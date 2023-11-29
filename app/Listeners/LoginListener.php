@@ -25,7 +25,7 @@ class LoginListener
      */
     public function handle(Login $event): void
     {
-        ds('login', $event);
+        // ds('login', $event);
         /** @var User $user */
         $user = $event->user;
         if (!$user) {
