@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -33,10 +34,10 @@ class LogoutListener
         $request = $this->request;
 
         $log = $user->auditLogs()->latest('login_at')
-        ->where('login_successfully', true)
-        ->where('ip', $request->ip())
-        ->whereNull('logout_at')
-        ->first();
+            ->where('login_successfully', true)
+            // ->where('ip', $request->ip())
+            ->where('logout_at', null)
+            ->first();
 
         if (!$log) {
             return;
@@ -44,5 +45,6 @@ class LogoutListener
 
         $log->logout_at = Carbon::now();
         $log->save();
+        // ds($log);
     }
 }

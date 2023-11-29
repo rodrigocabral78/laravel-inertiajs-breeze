@@ -22,6 +22,6 @@ class AttemptingListener
      */
     public function handle(Attempting $event): void
     {
-        ds('attempting', $event);
+        // ds('attempting', $event);
     }
 }

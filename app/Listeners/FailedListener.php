@@ -41,7 +41,7 @@ class FailedListener
             'browser'            => getBrowser()['name'],
             'login_at'           => Carbon::now(),
             'login_successfully' => false,
-            // 'location'           => geoip()->getLocation($request->ip())->toArray(),
+            // 'location'       => geoip()->getLocation($request->ip()),
         ]);
     }
 }

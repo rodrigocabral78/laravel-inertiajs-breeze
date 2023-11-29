@@ -43,7 +43,7 @@ class LoginListener
             'browser'            => getBrowser()['name'],
             'login_at'           => Carbon::now(),
             'login_successfully' => true,
-            'location'           => geoip()->getLocation($request->ip())->toArray(),
+            // 'location'           => geoip()->getLocation($request->ip())->toArray(),
         ]);
     }
 }

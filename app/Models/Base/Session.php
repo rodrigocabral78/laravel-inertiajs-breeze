@@ -6,12 +6,9 @@
 
 namespace App\Models\Base;
 
-use App\Models\AuditLog;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Session
@@ -24,7 +21,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $last_activity
  *
  * @property User|null $user
- * @property Collection|AuditLog[] $audit_logs
  *
  * @package App\Models\Base
  */
@@ -55,10 +51,5 @@ class Session extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function auditLogs(): HasMany
-    {
-        return $this->hasMany(AuditLog::class);
     }
 }
