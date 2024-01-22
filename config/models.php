@@ -68,8 +68,16 @@ return [
         */
 
         'use' => [
+            Carbon\Carbon::class,
+
             // Reliese\Database\Eloquent\BitBooleans::class,
             // Reliese\Database\Eloquent\BlamableBehavior::class,
+
+            Illuminate\Database\Eloquent\Factories\HasFactory::class,
+            Illuminate\Database\Eloquent\SoftDeletes::class,
+            Illuminate\Support\Facades\Auth::class,
+            Illuminate\Support\Facades\Hash::class,
+            Illuminate\Support\Str::class,
         ],
 
         /*
@@ -341,9 +349,7 @@ return [
         |     'billing_invoices' => 'Invoice',
         */
 
-        'model_names' => [
-
-        ],
+        'model_names' => [],
 
         /*
         |--------------------------------------------------------------------------
@@ -413,9 +419,7 @@ return [
         | You can enable pluralization for certain tables
         |
         */
-        'override_pluralize_for' => [
-
-        ],
+        'override_pluralize_for' => [],
         /*
         |--------------------------------------------------------------------------
         | Move $fillable property to base files

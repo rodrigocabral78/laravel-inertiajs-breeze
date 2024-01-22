@@ -15,6 +15,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   </head>
   <body class="font-sans antialiased">
+    <!-- Inertia -->
     @inertia
 
     {{-- Inertia --}}
@@ -24,7 +25,7 @@
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     @inertiaHead
-    <!-- Scripts -->
+    <!-- Scripts phpDebugBar-->
     @if(app()->environment('local'))
       @dsAutoClearOnPageReload
     @endif

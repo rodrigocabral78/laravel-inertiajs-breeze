@@ -19,16 +19,20 @@ return new class () extends Migration {
             // $table->foreign(['session_id'])->references(['id'])->on('sessions');
             // $table->string('session_name')->nullable();
             $table->boolean('login_successfully')->default(false);
-            $table->dateTime('login_at')->nullable();
-            $table->dateTime('logout_at')->nullable();
-            $table->ipAddress('ip')->nullable();
-            // $table->foreign(['ip'])->references(['ip_address'])->on('sessions');
+
             $table->string('agent')->nullable();
             // $table->foreign(['agent'])->references(['user_agent'])->on('sessions');
             $table->string('browser')->nullable();
+            $table->ipAddress('ip')->nullable();
+            // $table->foreign(['ip'])->references(['ip_address'])->on('sessions');
             $table->json('location')->nullable();
 
+            $table->timestamp('login_at')->nullable();
+            $table->timestamp('logout_at')->nullable();
             $table->timestamps();
+            $table->index('created_at');
+            $table->index('updated_at');
+            $table->softDeletes()->index();
         });
     }
 
